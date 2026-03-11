@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "barales-dev",
+      "runtimeExecutable": "/usr/local/bin/npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3005,
+      "cwd": "/Users/claudio/Projects/barales-website"
+    }
+  ]
+}
