@@ -40,7 +40,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
         <Header />
-        <main className="min-h-screen pt-20">{children}</main>
+        <main className="min-h-screen pt-16 lg:pt-0 lg:pl-[233px]">{children}</main>
         <Footer />
       </body>
     </html>
