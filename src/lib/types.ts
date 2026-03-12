@@ -16,9 +16,8 @@ export interface Sculpture {
   title: string
   year: number
   materials: string[]
-  dimensions?: { height: number; width: number; depth: number; unit: string }
-  weight?: string
-  description: string
+  dimensions?: string
+  description?: string
   category: 'figurativa' | 'abstracta' | 'funcional'
   featured: boolean
   order: number

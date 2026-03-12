@@ -17,8 +17,15 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!sculpture) return {}
   return {
     title: sculpture.title,
-    description: sculpture.description,
+    description: `${sculpture.title} — ${sculpture.year}${sculpture.materials.length ? ` — ${sculpture.materials.join(', ')}` : ''}`,
   }
+}
+
+function buildCaption(sculpture: { title: string; year: number; dimensions?: string; materials: string[] }) {
+  const parts = [sculpture.title, String(sculpture.year)]
+  if (sculpture.dimensions) parts.push(sculpture.dimensions)
+  if (sculpture.materials.length) parts.push(sculpture.materials.join(', '))
+  return parts.join(' — ')
 }
 
 export default async function SculptureDetailPage({ params }: { params: Params }) {
@@ -30,12 +37,12 @@ export default async function SculptureDetailPage({ params }: { params: Params }
   const mainImage = sculpture.images[0]
 
   return (
-    <div className="pt-4 pb-16">
-      <div className="mx-auto max-w-5xl px-6">
+    <div className="flex flex-col min-h-[calc(100vh-64px)] lg:min-h-screen">
+      <div className="flex-1 flex flex-col px-4 sm:px-6 lg:px-0 lg:max-w-[85%] pt-4 lg:pt-2">
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs tracking-[0.15em] text-text-secondary hover:text-text-primary transition-colors mb-6 uppercase"
+          className="inline-flex items-center gap-2 text-xs tracking-[0.15em] text-[#999] hover:text-[#222] transition-colors mb-4 uppercase"
         >
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -44,20 +51,20 @@ export default async function SculptureDetailPage({ params }: { params: Params }
         </Link>
 
         {/* Image / 3D viewer */}
-        <div className="mb-8">
+        <div className="mb-4 flex-1 min-h-0">
           {sculpture.model ? (
             <SculptureViewer
               modelUrl={sculpture.model.url}
               fallbackImage={mainImage.src}
             />
           ) : (
-            <div className="relative aspect-[4/3] bg-neutral-50 overflow-hidden">
+            <div className="relative w-full h-full max-h-[65vh] aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
               <Image
                 src={mainImage.src}
                 alt={mainImage.alt}
                 width={mainImage.width}
                 height={mainImage.height}
-                className="object-contain w-full h-full p-8"
+                className="object-contain w-full h-full"
                 priority
                 sizes="(max-width: 1024px) 100vw, 800px"
               />
@@ -65,49 +72,41 @@ export default async function SculptureDetailPage({ params }: { params: Params }
           )}
         </div>
 
-        {/* Title and info */}
-        <div className="max-w-xl">
-          <h1 className="text-lg font-light text-text-primary">
-            {sculpture.title}
-          </h1>
-          <p className="mt-2 text-sm text-text-secondary">
-            {sculpture.materials.join(', ')} &middot; {sculpture.year}
-          </p>
-          <p className="mt-4 text-sm text-text-secondary leading-relaxed">
-            {sculpture.description}
-          </p>
-        </div>
-
-        {/* Navigation */}
-        <nav className="mt-12 pt-6 border-t border-border flex items-center justify-between">
-          {prev ? (
-            <Link
-              href={`/obras/${prev.slug}`}
-              className="flex items-center gap-2 text-xs tracking-[0.1em] text-text-secondary hover:text-text-primary transition-colors uppercase"
-            >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-              </svg>
-              {prev.title}
-            </Link>
-          ) : (
-            <div />
-          )}
-          {next ? (
-            <Link
-              href={`/obras/${next.slug}`}
-              className="flex items-center gap-2 text-xs tracking-[0.1em] text-text-secondary hover:text-text-primary transition-colors uppercase"
-            >
-              {next.title}
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          ) : (
-            <div />
-          )}
-        </nav>
+        {/* Caption: Title — Year — Dimensions — Material */}
+        <p className="text-sm font-display text-[#222]">
+          {buildCaption(sculpture)}
+        </p>
       </div>
+
+      {/* Navigation */}
+      <nav className="px-4 sm:px-6 lg:px-0 lg:max-w-[85%] py-6 mt-4 border-t border-[#e5e5e5] flex items-center justify-between">
+        {prev ? (
+          <Link
+            href={`/obras/${prev.slug}`}
+            className="flex items-center gap-2 text-xs tracking-[0.1em] text-[#999] hover:text-[#222] transition-colors uppercase"
+          >
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            {prev.title}
+          </Link>
+        ) : (
+          <div />
+        )}
+        {next ? (
+          <Link
+            href={`/obras/${next.slug}`}
+            className="flex items-center gap-2 text-xs tracking-[0.1em] text-[#999] hover:text-[#222] transition-colors uppercase"
+          >
+            {next.title}
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+        ) : (
+          <div />
+        )}
+      </nav>
     </div>
   )
 }
