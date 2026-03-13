@@ -34,8 +34,8 @@ export function GalleryGrid({ sculptures }: { sculptures: Sculpture[] }) {
           key={sculpture.slug}
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
-            transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.07}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.07}s`,
+            transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
+            transition: `opacity 0.8s ease-out ${i * 0.06}s, transform 0.8s ease-out ${i * 0.06}s`,
           }}
         >
           <SculptureCard sculpture={sculpture} />
