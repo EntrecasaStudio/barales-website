@@ -10,7 +10,7 @@ export default function SobrePage() {
   return (
     <div className="pt-24 pb-16">
       <div className="mx-auto max-w-3xl px-6">
-        <h1 className="font-display text-4xl md:text-5xl font-light text-text-primary">
+        <h1 className="font-display text-4xl md:text-5xl font-normal text-text-primary">
           Sobre
         </h1>
 
@@ -27,7 +27,7 @@ export default function SobrePage() {
           </p>
 
           <div className="border-t border-border pt-8 mt-12">
-            <h2 className="font-display text-2xl font-light text-text-primary mb-6">
+            <h2 className="font-display text-2xl font-normal text-text-primary mb-6">
               Materiales
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -40,7 +40,7 @@ export default function SobrePage() {
           </div>
 
           <div className="border-t border-border pt-8">
-            <h2 className="font-display text-2xl font-light text-text-primary mb-6">
+            <h2 className="font-display text-2xl font-normal text-text-primary mb-6">
               Contacto
             </h2>
             <div className="space-y-3 text-sm">

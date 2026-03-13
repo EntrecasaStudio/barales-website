@@ -50,25 +50,27 @@ export default async function SculptureDetailPage({ params }: { params: Params }
           Obras
         </Link>
 
-        {/* Image / 3D viewer */}
-        <div className="mb-4 flex-1 min-h-0">
+        {/* Images / 3D viewer */}
+        <div className="mb-4 flex-1 min-h-0 flex flex-col gap-4">
           {sculpture.model ? (
             <SculptureViewer
               modelUrl={sculpture.model.url}
               fallbackImage={mainImage.src}
             />
           ) : (
-            <div className="relative w-full h-full max-h-[65vh] aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
-              <Image
-                src={mainImage.src}
-                alt={mainImage.alt}
-                width={mainImage.width}
-                height={mainImage.height}
-                className="object-contain w-full h-full"
-                priority
-                sizes="(max-width: 1024px) 100vw, 800px"
-              />
-            </div>
+            sculpture.images.map((image, i) => (
+              <div key={image.src} className={`relative w-full overflow-hidden bg-[#f5f5f5] ${i === 0 ? 'max-h-[65vh] aspect-[4/3]' : 'max-h-[65vh] aspect-[4/3]'}`}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  className="object-contain w-full h-full"
+                  priority={i === 0}
+                  sizes="(max-width: 1024px) 100vw, 800px"
+                />
+              </div>
+            ))
           )}
         </div>
 

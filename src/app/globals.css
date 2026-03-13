@@ -11,14 +11,14 @@
   --color-accent-hover: #000000;
   --color-border: #E5E5E5;
 
-  --font-display: var(--font-cormorant);
-  --font-body: var(--font-inter);
+  --font-display: "ottomat", sans-serif;
+  --font-body: "ottomat", sans-serif;
 }
 
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-body);
 }
 
 ::selection {
@@ -28,4 +28,42 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Mobile menu animations */
+@keyframes menuOverlayIn {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes menuOverlayOut {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 0 100% 0); }
+}
+
+@keyframes menuContentIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes menuContentOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(12px); }
+}
+
+.menu-overlay-enter {
+  animation: menuOverlayIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.menu-overlay-exit {
+  animation: menuOverlayOut 0.3s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+.menu-content-enter {
+  animation: menuContentIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+.menu-content-exit {
+  animation: menuContentOut 0.2s ease-in forwards;
 }

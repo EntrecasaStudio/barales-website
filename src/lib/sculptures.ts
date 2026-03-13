@@ -39,7 +39,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: false,
     order: 4,
-    images: [{ src: '/images/sculptures/molpe/hero.png', alt: 'Molpe - escultura en arcilla', width: 2200, height: 2200 }],
+    images: [
+      { src: '/images/sculptures/molpe/hero.png', alt: 'Molpe - escultura en arcilla', width: 2200, height: 2200 },
+      { src: '/images/sculptures/molpe/02.png', alt: 'Molpe - vista alternativa', width: 1920, height: 1920 },
+    ],
   },
   {
     slug: 'chakrasana',
@@ -60,7 +63,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: false,
     order: 6,
-    images: [{ src: '/images/sculptures/urdhva-padmasana/hero.jpg', alt: 'Urdhva Padmasana - escultura en arcilla', width: 695, height: 695 }],
+    images: [
+      { src: '/images/sculptures/urdhva-padmasana/hero.jpg', alt: 'Urdhva Padmasana - escultura en arcilla', width: 695, height: 695 },
+      { src: '/images/sculptures/urdhva-padmasana/02.jpg', alt: 'Urdhva Padmasana - vista alternativa', width: 694, height: 694 },
+    ],
   },
   {
     slug: 'foco',
@@ -71,7 +77,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: false,
     order: 7,
-    images: [{ src: '/images/sculptures/foco/hero.png', alt: 'Foco - escultura en arcilla', width: 695, height: 695 }],
+    images: [
+      { src: '/images/sculptures/foco/hero.png', alt: 'Foco - escultura en arcilla', width: 695, height: 695 },
+      { src: '/images/sculptures/foco/02.jpg', alt: 'Foco - vista alternativa', width: 695, height: 695 },
+    ],
   },
   {
     slug: 'mesa-ratona',
@@ -82,7 +91,10 @@ const sculptures: Sculpture[] = [
     category: 'funcional',
     featured: false,
     order: 8,
-    images: [{ src: '/images/sculptures/mesa-ratona/hero.jpg', alt: 'Mesa Ratona - escultura en resina poliester', width: 695, height: 695 }],
+    images: [
+      { src: '/images/sculptures/mesa-ratona/hero.jpg', alt: 'Mesa Ratona - escultura en resina poliester', width: 695, height: 695 },
+      { src: '/images/sculptures/mesa-ratona/02.jpg', alt: 'Mesa Ratona - vista alternativa', width: 695, height: 695 },
+    ],
   },
   {
     slug: 'venus',
@@ -93,7 +105,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: true,
     order: 9,
-    images: [{ src: '/images/sculptures/venus/hero.png', alt: 'Venus - escultura en resina poliester', width: 695, height: 695 }],
+    images: [
+      { src: '/images/sculptures/venus/hero.png', alt: 'Venus - escultura en resina poliester', width: 695, height: 695 },
+      { src: '/images/sculptures/venus/02.png', alt: 'Venus - vista alternativa', width: 695, height: 695 },
+    ],
   },
   {
     slug: 'pichon',
@@ -104,7 +119,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: false,
     order: 10,
-    images: [{ src: '/images/sculptures/pichon/hero.jpg', alt: 'Pichón - escultura en resina poliester', width: 695, height: 695 }],
+    images: [
+      { src: '/images/sculptures/pichon/hero.jpg', alt: 'Pichón - escultura en resina poliester', width: 695, height: 695 },
+      { src: '/images/sculptures/pichon/02.jpg', alt: 'Pichón - vista alternativa', width: 695, height: 695 },
+    ],
   },
   {
     slug: 'escorpio',
@@ -115,7 +133,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: false,
     order: 11,
-    images: [{ src: '/images/sculptures/escorpio/hero.png', alt: 'Escorpio - escultura en resina poliester', width: 1920, height: 1920 }],
+    images: [
+      { src: '/images/sculptures/escorpio/hero.png', alt: 'Escorpio - escultura en resina poliester', width: 1920, height: 1920 },
+      { src: '/images/sculptures/escorpio/02.png', alt: 'Escorpio - vista alternativa', width: 1920, height: 1843 },
+    ],
   },
   {
     slug: 'satiro',
@@ -126,7 +147,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: false,
     order: 12,
-    images: [{ src: '/images/sculptures/satiro/hero.jpg', alt: 'Sátiro - escultura en resina poliester', width: 695, height: 695 }],
+    images: [
+      { src: '/images/sculptures/satiro/hero.jpg', alt: 'Sátiro - escultura en resina poliester', width: 695, height: 695 },
+      { src: '/images/sculptures/satiro/02.jpg', alt: 'Sátiro - vista alternativa', width: 695, height: 695 },
+    ],
   },
   {
     slug: 'bicicleta-fija',
@@ -137,7 +161,10 @@ const sculptures: Sculpture[] = [
     category: 'figurativa',
     featured: false,
     order: 13,
-    images: [{ src: '/images/sculptures/bicicleta-fija/hero.jpg', alt: 'Bicicleta Fija - escultura en resina poliester', width: 695, height: 695 }],
+    images: [
+      { src: '/images/sculptures/bicicleta-fija/hero.jpg', alt: 'Bicicleta Fija - escultura en resina poliester', width: 695, height: 695 },
+      { src: '/images/sculptures/bicicleta-fija/02.jpg', alt: 'Bicicleta Fija - vista alternativa', width: 695, height: 695 },
+    ],
   },
   {
     slug: 'primer-amor',

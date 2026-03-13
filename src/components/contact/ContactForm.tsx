@@ -16,7 +16,7 @@ export function ContactForm() {
   if (status === 'sent') {
     return (
       <div className="text-center py-16">
-        <p className="text-2xl text-text-primary font-light">Gracias!</p>
+        <p className="text-2xl text-text-primary font-normal">Gracias!</p>
         <p className="mt-3 text-sm text-text-secondary">Tu mensaje fue enviado.</p>
       </div>
     )

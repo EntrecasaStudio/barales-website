@@ -1,21 +1,7 @@
 import type { Metadata } from "next"
-import { Cormorant_Garamond, Inter } from "next/font/google"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import "./globals.css"
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-})
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-})
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/ujq2gda.css" />
+      </head>
+      <body className="antialiased">
         <Header />
         <main className="min-h-screen pt-16 lg:pt-0 lg:pl-[233px]">{children}</main>
         <Footer />
