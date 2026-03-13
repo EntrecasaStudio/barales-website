@@ -42,7 +42,8 @@ export default async function SculptureDetailPage({ params }: { params: Params }
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs tracking-[0.15em] text-[#999] hover:text-[#222] transition-colors mb-4 uppercase"
+          className="inline-flex items-center gap-2 text-xs tracking-[0.15em] text-[#999] hover:text-[#222] transition-colors mb-4 uppercase page-fade-in"
+          style={{ animationDelay: '0.1s' }}
         >
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -59,7 +60,7 @@ export default async function SculptureDetailPage({ params }: { params: Params }
             />
           ) : (
             sculpture.images.map((image, i) => (
-              <div key={image.src} className={`relative w-full overflow-hidden bg-[#f5f5f5] ${i === 0 ? 'max-h-[65vh] aspect-[4/3]' : 'max-h-[65vh] aspect-[4/3]'}`}>
+              <div key={image.src} className={`relative w-full overflow-hidden bg-[#f5f5f5] page-fade-in ${i === 0 ? 'max-h-[65vh] aspect-[4/3]' : 'max-h-[65vh] aspect-[4/3]'}`} style={{ animationDelay: `${0.15 + i * 0.1}s` }}>
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -75,13 +76,13 @@ export default async function SculptureDetailPage({ params }: { params: Params }
         </div>
 
         {/* Caption: Title — Year — Dimensions — Material */}
-        <p className="text-sm font-display text-[#222]">
+        <p className="text-sm font-display text-[#222] page-fade-in" style={{ animationDelay: '0.3s' }}>
           {buildCaption(sculpture)}
         </p>
       </div>
 
       {/* Navigation */}
-      <nav className="px-4 sm:px-6 lg:px-0 lg:max-w-[85%] py-6 mt-4 border-t border-[#e5e5e5] flex items-center justify-between">
+      <nav className="px-4 sm:px-6 lg:px-0 lg:max-w-[85%] py-6 mt-4 border-t border-[#e5e5e5] flex items-center justify-between page-fade-in" style={{ animationDelay: '0.4s' }}>
         {prev ? (
           <Link
             href={`/obras/${prev.slug}`}

@@ -79,21 +79,22 @@ export function Header() {
     <>
       {/* Desktop: fixed left sidebar */}
       <aside className="hidden lg:flex fixed top-0 left-0 w-[233px] h-screen z-40 flex-col items-start pt-10 pl-10">
-        <Link href="/" className="font-display text-2xl font-normal text-[#222] hover:text-[#999] transition-colors">
+        <Link href="/" className="font-display text-2xl font-normal text-[#222] hover:text-[#999] transition-colors sidebar-fade" style={{ animationDelay: '0.1s' }}>
           B A R A L E S
         </Link>
         <nav className="mt-8 flex flex-col gap-2">
-          {NAV_LINKS.map((link) => (
+          {NAV_LINKS.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`font-display text-base font-normal transition-colors ${link.href === '/' ? 'text-[#999] hover:text-[#222]' : 'text-[#222] hover:text-[#999]'}`}
+              className={`font-display text-base font-normal transition-colors sidebar-fade ${link.href === '/' ? 'text-[#999] hover:text-[#222]' : 'text-[#222] hover:text-[#999]'}`}
+              style={{ animationDelay: `${0.2 + i * 0.08}s` }}
             >
               {link.spacedLabel}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-4 mt-4">
+        <div className="flex items-center gap-4 mt-4 sidebar-fade" style={{ animationDelay: '0.4s' }}>
           <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="text-[#999] hover:text-[#222] transition-colors" aria-label="Instagram">
             <svg className="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3}>
               <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -111,7 +112,7 @@ export function Header() {
       </aside>
 
       {/* Mobile: top bar */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white">
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white page-fade-in" style={{ animationDelay: '0.05s' }}>
         <div className="flex items-center justify-between px-5 py-4">
           <Link href="/" className="font-display text-lg font-normal text-[#222]">B A R A L E S</Link>
           <button className="relative w-6 h-5 flex flex-col justify-between" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
