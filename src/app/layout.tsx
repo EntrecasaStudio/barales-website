@@ -7,7 +7,7 @@ import "./globals.css"
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  weight: ["300", "400", "500", "700"],
   display: "swap",
 })
 
@@ -22,8 +22,11 @@ export const metadata: Metadata = {
     default: "Barales Escultor",
     template: "%s | Barales Escultor",
   },
-  description: "Portfolio de esculturas de Leandro Barales. Obras en cemento, resina, bronce y técnica mixta.",
+  description: "Portfolio de esculturas de Leandro Barales. Obras en arcilla, plasticera y resina poliester.",
   metadataBase: new URL("https://barales.ar"),
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     type: "website",
     locale: "es_AR",
