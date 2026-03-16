@@ -67,6 +67,11 @@ const sculptures: Sculpture[] = [
       { src: '/images/sculptures/urdhva-padmasana/hero.jpg', alt: 'Urdhva Padmasana - escultura en arcilla', width: 695, height: 695 },
       { src: '/images/sculptures/urdhva-padmasana/02.jpg', alt: 'Urdhva Padmasana - vista alternativa', width: 694, height: 694 },
     ],
+    model: {
+      url: '/models/paro-de-cabeza-en-loto.glb',
+      sizeKb: 1080,
+      triangleCount: 91027,
+    },
   },
   {
     slug: 'foco',

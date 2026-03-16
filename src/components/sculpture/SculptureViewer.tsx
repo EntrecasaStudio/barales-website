@@ -8,5 +8,9 @@ const ModelViewer = dynamic(
 )
 
 export function SculptureViewer({ modelUrl, fallbackImage }: { modelUrl: string; fallbackImage?: string }) {
-  return <ModelViewer modelUrl={modelUrl} fallbackImage={fallbackImage} />
+  return (
+    <div className="w-full bg-[#f5f5f5] page-fade-in" style={{ height: '65vh', animationDelay: '0.15s' }}>
+      <ModelViewer modelUrl={modelUrl} fallbackImage={fallbackImage} autoRotate={true} />
+    </div>
+  )
 }
