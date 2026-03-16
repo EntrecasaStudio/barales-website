@@ -7,8 +7,9 @@ import * as THREE from 'three'
 
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/')
 
-// Clipping plane to cut off the bottom (screws + bad base)
-const clipPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0.01)
+// Clipping plane: model centered by <Center> → Y from -0.699 to +0.699
+// Only clip the rod tips at the very bottom (constant=0.67 → clips below y=-0.67)
+const clipPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0.67)
 
 type ViewAngle = 'front' | 'back' | 'quarter' | 'auto'
 
@@ -25,6 +26,7 @@ function Model({
   const groupRef = useRef<THREE.Group>(null)
   const targetRotationY = useRef(Math.PI)
   const isAutoRotating = viewAngle === 'auto'
+  const loadedRef = useRef(false)
 
   // Apply clipping planes to all materials
   useEffect(() => {
@@ -35,7 +37,11 @@ function Model({
         mat.clipShadows = true
       }
     })
-    onLoaded?.()
+    if (!loadedRef.current) {
+      loadedRef.current = true
+      // Small delay so the still frame renders first
+      setTimeout(() => onLoaded?.(), 100)
+    }
   }, [scene, onLoaded])
 
   // Set target rotation based on view angle
@@ -54,7 +60,6 @@ function Model({
       const current = groupRef.current.rotation.y
       const target = targetRotationY.current
       const diff = target - current
-      // Normalize to shortest path
       const shortDiff = ((diff + Math.PI * 3) % (Math.PI * 2)) - Math.PI
       groupRef.current.rotation.y += shortDiff * 0.08
     }
@@ -74,7 +79,6 @@ function CameraReset({ viewAngle }: { viewAngle: ViewAngle }) {
   const targetPos = useRef(new THREE.Vector3(0, 0.7, 2.2))
 
   useEffect(() => {
-    // Reset camera to default when switching views
     targetPos.current.set(0, 0.7, 2.2)
   }, [viewAngle])
 
@@ -94,8 +98,18 @@ interface ModelViewerProps {
 }
 
 export function ModelViewer({ modelUrl, autoRotate = true, className = '', onLoaded }: ModelViewerProps) {
-  const [viewAngle, setViewAngle] = useState<ViewAngle>(autoRotate ? 'auto' : 'front')
+  // Start as 'front' (still), switch to 'auto' once loaded
+  const [viewAngle, setViewAngle] = useState<ViewAngle>('front')
   const [loaded, setLoaded] = useState(false)
+
+  const handleModelLoaded = useCallback(() => {
+    setLoaded(true)
+    if (autoRotate) {
+      // Start rotating after a brief still moment
+      setTimeout(() => setViewAngle('auto'), 600)
+    }
+    onLoaded?.()
+  }, [autoRotate, onLoaded])
 
   const handleView = useCallback((view: ViewAngle) => {
     setViewAngle(view)
@@ -112,7 +126,7 @@ export function ModelViewer({ modelUrl, autoRotate = true, className = '', onLoa
           <ambientLight intensity={0.6} />
           <directionalLight position={[5, 5, 5]} intensity={0.8} />
           <directionalLight position={[-3, 3, -3]} intensity={0.3} />
-          <Model url={modelUrl} viewAngle={viewAngle} onLoaded={() => { setLoaded(true); onLoaded?.() }} />
+          <Model url={modelUrl} viewAngle={viewAngle} onLoaded={handleModelLoaded} />
           <Environment preset="studio" environmentIntensity={0.4} />
           <CameraReset viewAngle={viewAngle} />
           <OrbitControls
@@ -126,7 +140,7 @@ export function ModelViewer({ modelUrl, autoRotate = true, className = '', onLoa
 
       {/* View buttons */}
       {loaded && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 page-fade-in">
           {[
             { key: 'auto', label: 'Auto' },
             { key: 'front', label: 'Frontal' },

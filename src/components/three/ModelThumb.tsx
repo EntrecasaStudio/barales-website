@@ -7,7 +7,7 @@ import * as THREE from 'three'
 
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/')
 
-const clipPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0.01)
+const clipPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0.67)
 
 function SpinningModel({ url }: { url: string }) {
   const { scene } = useGLTF(url)
